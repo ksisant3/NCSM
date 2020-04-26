@@ -1,39 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:cs386/screens/main_screen.dart';
-import 'package:cs386/util/constants.dart';
+import 'pages/home.dart';
 
-void main() async{
+void main() {
+  // Firestore.instance.settings(timestampsInSnapshotsEnabled: true).then((_) {
+  //   print("Timestamps enabled in snapshots\n");
+  // }, onError: (_) {
+  //   print("Error enabling timestamps in snapshots\n");
+  // });
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-
-}
-
-class _MyAppState extends State<MyApp> {
-  bool isDark = false;
-  @override
-  void initState() {
-    super.initState();
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: isDark ? Constants.darkPrimary : Constants.lightPrimary,
-      statusBarIconBrightness: isDark?Brightness.light:Brightness.dark,
-    ));
-  }
-
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'FlutterShare',
       debugShowCheckedModeBanner: false,
-      title: Constants.appName,
-      theme: isDark ? Constants.darkTheme : Constants.lightTheme,
-      home: MainScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+        accentColor: Colors.teal,
+      ),
+      home: Home(),
     );
   }
 }
-
